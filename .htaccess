@@ -1,0 +1,20 @@
+RewriteEngine On
+
+# Start converting query parameters to path
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?[^\ ]+
+RewriteCond %{QUERY_STRING} ^([^=]+)=([^&]+)&?(.*)$
+RewriteRule ^(.*)$ $1/%1/%2?%3 [L]
+
+# done converting, remove index.php and redirect browser
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\?[^\ ]+
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^index.php/(.*)$ $1 [R=301,L]
+
+# internally rewrite paths to query strings
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteRule ^([^/]+)/([^/]+)/?(.*) $3?$1=$2 [L,QSA]
+
+# No more path, rewrite to index.php
+RewriteRule ^$ index.php [L]
