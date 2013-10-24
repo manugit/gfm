@@ -1,30 +1,30 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2013-10-23 22:04:22
+<?php /* Smarty version Smarty-3.1.15, created on 2013-10-24 13:01:06
          compiled from ".\templates\pot.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:53525266f76ecbbf95-34968890%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:21865268fdf2d7e721-53490548%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '9d0773d214d8f35e1ebfcedfd4845f7b0a299f2f' => 
     array (
       0 => '.\\templates\\pot.tpl',
-      1 => 1382558320,
+      1 => 1382611345,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '53525266f76ecbbf95-34968890',
+  'nocache_hash' => '21865268fdf2d7e721-53490548',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.15',
-  'unifunc' => 'content_5266f76ed34d15_57024211',
   'variables' => 
   array (
     'products' => 0,
     'pot' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.15',
+  'unifunc' => 'content_5268fdf2dc93e1_06296073',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5266f76ed34d15_57024211')) {function content_5266f76ed34d15_57024211($_smarty_tpl) {?><div id="pot_page">
+<?php if ($_valid && !is_callable('content_5268fdf2dc93e1_06296073')) {function content_5268fdf2dc93e1_06296073($_smarty_tpl) {?><div id="pot_page">
 	<p>Anzahl Ausgaben: <?php echo count($_smarty_tpl->tpl_vars['products']->value);?>
 <br />
 		Pot g&uuml;ltig von <?php echo $_smarty_tpl->tpl_vars['pot']->value['startDate'];?>
