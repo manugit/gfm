@@ -2,11 +2,15 @@
 require 'Smarty/libs/Smarty.class.php';
 
 $smarty = new Smarty;
+$smarty->assign('rootpath', 'http://'.$_SERVER['HTTP_HOST'].'/gfm');
+//echo "http://". $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+//print_r($_GET);
 
 if (isset($_GET['pot'])) {
 	// TODO auch noch schauen ob item gesetzt oder teilnehmer...
 	$smarty->assign('title','Pot ljsf');
 	$smarty->assign('newPot', false);
+	$smarty->assign('displayedPage', $_GET["page"]);
 	$smarty->assign('pot', array('name' => 'Testpot', 'startDate' => '10.10.2013', 'endDate' => '12.12.2013', 'url' => 'ic0sati0nybxgp1', 'description' => 'blablabla'));
 	$smarty->assign('users',
 			array(

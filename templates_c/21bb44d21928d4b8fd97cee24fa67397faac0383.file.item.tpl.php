@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2013-10-24 13:01:06
+<?php /* Smarty version Smarty-3.1.15, created on 2013-10-28 20:01:24
          compiled from ".\templates\item.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:243155268fdf2e0abe5-04615695%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '21bb44d21928d4b8fd97cee24fa67397faac0383' => 
     array (
       0 => '.\\templates\\item.tpl',
-      1 => 1382611345,
+      1 => 1382986882,
       2 => 'file',
     ),
   ),
@@ -15,19 +15,20 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.15',
+  'unifunc' => 'content_5268fdf3002844_68801240',
   'variables' => 
   array (
     'scopeLowerCase' => 0,
+    'displayedPage' => 0,
     'scopeUpperCase' => 0,
     'users' => 0,
     'buttonText' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.15',
-  'unifunc' => 'content_5268fdf3002844_68801240',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5268fdf3002844_68801240')) {function content_5268fdf3002844_68801240($_smarty_tpl) {?><div id="<?php echo $_smarty_tpl->tpl_vars['scopeLowerCase']->value;?>
-Item_page">
+Item_page" <?php if ($_smarty_tpl->tpl_vars['displayedPage']->value!=((string)$_smarty_tpl->tpl_vars['scopeLowerCase']->value)."Item_page") {?>style="display: none;"<?php }?>>
 	<form id="<?php echo $_smarty_tpl->tpl_vars['scopeLowerCase']->value;?>
 ItemForm" name="<?php echo $_smarty_tpl->tpl_vars['scopeLowerCase']->value;?>
 ItemForm" onsubmit="check<?php echo $_smarty_tpl->tpl_vars['scopeUpperCase']->value;?>
@@ -145,6 +146,6 @@ _item_error">&nbsp;</td>
 		
 		<input type="submit" value="<?php echo $_smarty_tpl->tpl_vars['buttonText']->value;?>
 ">
-	</form><button onclick="clear<?php echo $_smarty_tpl->tpl_vars['scopeUpperCase']->value;?>
-ItemFormAndReturn()">Zur&uuml;ck zum Pot</button>
+	</form><button onclick="clearItemFormAndReturn('<?php echo $_smarty_tpl->tpl_vars['scopeUpperCase']->value;?>
+')">Zur&uuml;ck zum Pot</button>
 </div><?php }} ?>

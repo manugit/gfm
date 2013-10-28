@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2013-10-24 13:01:07
+<?php /* Smarty version Smarty-3.1.15, created on 2013-10-28 17:02:18
          compiled from ".\templates\participant.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:69365268fdf3063ef5-92725191%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '91e1c2d9f3bb48ccec29b886fcb785c67292db9b' => 
     array (
       0 => '.\\templates\\participant.tpl',
-      1 => 1382611345,
+      1 => 1382976125,
       2 => 'file',
     ),
   ),
@@ -15,15 +15,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.15',
+  'unifunc' => 'content_5268fdf30f3d56_63616326',
   'variables' => 
   array (
+    'displayedPage' => 0,
     'users' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.15',
-  'unifunc' => 'content_5268fdf30f3d56_63616326',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5268fdf30f3d56_63616326')) {function content_5268fdf30f3d56_63616326($_smarty_tpl) {?><div id="participant_page">
+<?php if ($_valid && !is_callable('content_5268fdf30f3d56_63616326')) {function content_5268fdf30f3d56_63616326($_smarty_tpl) {?><div id="participant_page" <?php if ($_smarty_tpl->tpl_vars['displayedPage']->value!="participant_page") {?>style="display: none;"<?php }?>>
 	<h2>Teilnehmer</h2>
 	<table>
 		<thead>

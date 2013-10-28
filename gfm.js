@@ -3,7 +3,6 @@ var usercount = 5;
 var rowcount = 2;
 
 $(document).ready(function() {
-	displayPage();
 	for (var i = 0; i < products.length; i++) {
 		getUserByName(products[i]["buyer"])["pay"] += parseFloat(products[i]["price"]);
 	}
@@ -57,7 +56,7 @@ $(document).ready(function() {
 	$("#edit_item_buyer").prop("selectedIndex", -1);
 });
 
-function displayPage(displayedPage) {
+function displayPage(displayedPage, itemId) {
 	if (typeof displayedPage === "undefined") {
 		displayedPage = "pot_page";
 	}
@@ -68,7 +67,15 @@ function displayPage(displayedPage) {
 	$("#participant_page").hide();
 	
 	$("#" + displayedPage).show();
-	window.history.pushState("object or string", displayedPage, "/gfm/index.php?pot=ic0sati0nybxgp1&" + displayedPage);
+	if ("pot_page" == displayedPage) {
+		window.history.pushState("object or string", displayedPage, "/gfm/" + pot["url"] + "/overview");
+	} else if ("addItem_page" == displayedPage) {
+		window.history.pushState("object or string", displayedPage, "/gfm/" + pot["url"] + "/item/add");
+	} else if ("editItem_page" == displayedPage) {
+		window.history.pushState("object or string", displayedPage, "/gfm/" + pot["url"] + "/item/edit/" + itemId);
+	} else if ("participant_page" == displayedPage) {
+		window.history.pushState("object or string", displayedPage, "/gfm/" + pot["url"] + "/participant");
+	}
 }
 
 function displayEditItemPage(rowId) {

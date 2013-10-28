@@ -1,4 +1,4 @@
-<div id="{$scopeLowerCase}Item_page">
+<div id="{$scopeLowerCase}Item_page" {if $displayedPage != "{$scopeLowerCase}Item_page"}style="display: none;"{/if}>
 	<form id="{$scopeLowerCase}ItemForm" name="{$scopeLowerCase}ItemForm" onsubmit="check{$scopeUpperCase}Item(this); return false;">
 		<input type="hidden" name="id" />
 		<table>
@@ -51,5 +51,5 @@
 		</table>
 		
 		<input type="submit" value="{$buttonText}">
-	</form><button onclick="clear{$scopeUpperCase}ItemFormAndReturn()">Zur&uuml;ck zum Pot</button>
+	</form><button onclick="clearItemFormAndReturn('{$scopeUpperCase}')">Zur&uuml;ck zum Pot</button>
 </div>

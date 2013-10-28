@@ -1,4 +1,4 @@
-<div id="participant_page">
+<div id="participant_page" {if $displayedPage != "participant_page"}style="display: none;"{/if}>
 	<h2>Teilnehmer</h2>
 	<table>
 		<thead>

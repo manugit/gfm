@@ -7,16 +7,16 @@
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 {if $newPot}
-    <script src="newPot.js" type="text/javascript"></script>
+    <script src="{$rootpath}/newPot.js" type="text/javascript"></script>
 {else}
-	<script src="gfm.js" type="text/javascript"></script>
+	<script src="{$rootpath}/gfm.js" type="text/javascript"></script>
 	<script language="JavaScript">
 		var users = {$users|json_encode};
 		var products = {$products|json_encode};
 		var pot = {$pot|json_encode};
 	</script>
 {/if}
-<link rel="stylesheet" href="gfm.css" />
+<link rel="stylesheet" href="{$rootpath}/gfm.css" />
 </head>
 <body>
 {if $newPot}

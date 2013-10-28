@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2013-10-24 13:01:06
+<?php /* Smarty version Smarty-3.1.15, created on 2013-10-28 17:02:18
          compiled from ".\templates\pot.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:21865268fdf2d7e721-53490548%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '9d0773d214d8f35e1ebfcedfd4845f7b0a299f2f' => 
     array (
       0 => '.\\templates\\pot.tpl',
-      1 => 1382611345,
+      1 => 1382976116,
       2 => 'file',
     ),
   ),
@@ -15,16 +15,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.15',
+  'unifunc' => 'content_5268fdf2dc93e1_06296073',
   'variables' => 
   array (
+    'displayedPage' => 0,
     'products' => 0,
     'pot' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.15',
-  'unifunc' => 'content_5268fdf2dc93e1_06296073',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5268fdf2dc93e1_06296073')) {function content_5268fdf2dc93e1_06296073($_smarty_tpl) {?><div id="pot_page">
+<?php if ($_valid && !is_callable('content_5268fdf2dc93e1_06296073')) {function content_5268fdf2dc93e1_06296073($_smarty_tpl) {?><div id="pot_page" <?php if ($_smarty_tpl->tpl_vars['displayedPage']->value!="pot_page") {?>style="display: none;"<?php }?>>
 	<p>Anzahl Ausgaben: <?php echo count($_smarty_tpl->tpl_vars['products']->value);?>
 <br />
 		Pot g&uuml;ltig von <?php echo $_smarty_tpl->tpl_vars['pot']->value['startDate'];?>

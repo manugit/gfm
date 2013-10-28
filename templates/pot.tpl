@@ -1,4 +1,4 @@
-<div id="pot_page">
+<div id="pot_page" {if $displayedPage != "pot_page"}style="display: none;"{/if}>
 	<p>Anzahl Ausgaben: {$products|count}<br />
 		Pot g&uuml;ltig von {$pot.startDate} bis {$pot.endDate}</p>
 	<table id="expense_table">
