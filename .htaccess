@@ -1,5 +1,6 @@
 RewriteEngine On                
 RewriteRule ^([a-z0-9]*)/overview$ /gfm/?pot=$1&page=pot_page [L]       
 RewriteRule ^([a-z0-9]*)/item/add$ /gfm/?pot=$1&page=addItem_page [L]
-RewriteRule ^([a-z0-9]*)/item/edit/([0-9]*)$ /gfm/?pot=$1&page=editItem_page&id=$2 [L]
+RewriteRule ^([a-z0-9]*)/item/edit/([0-9]*)$ /gfm/?pot=$1&page=editItem_page&item=$2 [L]
 RewriteRule ^([a-z0-9]*)/participant$ /gfm/?pot=$1&page=participant_page [L]
+RewriteRule ^(.)*/actions.php$ /gfm/actions.php [L]

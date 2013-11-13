@@ -1,4 +1,25 @@
-<div class="jumbotron">
+<?php /* Smarty version Smarty-3.1.15, created on 2013-11-13 00:51:52
+         compiled from ".\templates\newPot.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:197845277ee6db37355-73826644%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    'aa6098608000938c789aeacaf350bb941d432dd7' => 
+    array (
+      0 => '.\\templates\\newPot.tpl',
+      1 => 1384300301,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '197845277ee6db37355-73826644',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.15',
+  'unifunc' => 'content_5277ee6dbe8230_19205854',
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_5277ee6dbe8230_19205854')) {function content_5277ee6dbe8230_19205854($_smarty_tpl) {?><div class="jumbotron">
 	<h1>Willkommen auf der Gruppen<wbr>finanzierungs<wbr>verwaltung!</h1>
 	<p>Wie oft stellte sich die gemeinsame Finanzierung problematisch heraus? Mit dieser Verwaltung schaffen wir nun Abhilfe und erlauben Ihnen die Finanzen in einer Gruppe unter Kontrolle zu halten.</p>
 	<p>Z&ouml;gern Sie nicht und starten gleich mit einem Pot!</p>
@@ -79,4 +100,4 @@
 		<p><i>Speichern Sie sich die URL unverz&uuml;glich.</i></p>
 		<button onclick="showWellcomeScreen()" class="btn btn-primary">Weiteren Pot erstellen</button>
 	</div>		
-</div>
+</div><?php }} ?>

@@ -1,45 +1,87 @@
 <?php
 require 'Smarty/libs/Smarty.class.php';
+require 'dbConnection.php';
 
 $smarty = new Smarty;
 $smarty->assign('rootpath', 'http://'.$_SERVER['HTTP_HOST'].'/gfm');
-//echo "http://". $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-//print_r($_GET);
 
-if (isset($_GET['pot'])) {
-	// TODO auch noch schauen ob item gesetzt oder teilnehmer...
-	$smarty->assign('title','Pot ljsf');
+if (isset($_GET['pot']) && isset($_GET['page'])) {
+	// TODO fehlerhandling wenn nichts gefunden wurde... bei allen bereichen
+	// assign global variables
 	$smarty->assign('newPot', false);
 	$smarty->assign('displayedPage', $_GET["page"]);
-	$smarty->assign('pot', array('name' => 'Testpot', 'startDate' => '10.10.2013', 'endDate' => '12.12.2013', 'url' => 'ic0sati0nybxgp1', 'description' => 'blablabla'));
-	$smarty->assign('users',
-			array(
-					array('id' => '1', 'name' => 'user1', 'firstname' => 'first1', 'email' => 'first1@user1.ch', 'birthday' => '01.01.1989', 'pay' => 0.0, 'use' => 0.0),
-					array('id' => '2', 'name' => 'user2', 'firstname' => 'first2', 'email' => 'first2@user2.ch', 'birthday' => '01.01.1990', 'pay' => 0.0, 'use' => 0.0),
-					array('id' => '3', 'name' => 'user3', 'firstname' => 'first3', 'email' => 'first3@user3.ch', 'birthday' => '01.01.1991', 'pay' => 0.0, 'use' => 0.0),
-					array('id' => '4', 'name' => 'user4', 'firstname' => 'first4', 'email' => 'first4@user4.ch', 'birthday' => '01.01.1992', 'pay' => 0.0, 'use' => 0.0),
-			)
-	);
-	$smarty->assign('products',
-			array(
-					array('rowId' => "row_0", 'price' => 8.00, 'name' => '4 Liter Milch', 'date' => '01.01.2013', 'buyer' => 'user1', 'user1' => 0.75, 'user2' => 0, 'user3' => 0.25, 'user4' => 0)
-			)
-	);
-	$smarty->display('index.tpl');
+	
+	// assign pot
+	$stmt = $dbh->prepare("SELECT id, name, description, DATE_FORMAT(startdate, '%d.%m.%Y') AS startDate, DATE_FORMAT(enddate,'%d.%m.%Y') AS endDate, url_hash AS url FROM pot WHERE url_hash = ?;");
+	$stmt->bindParam(1, $_GET['pot']);
+	$stmt->execute();
+	$pot = $stmt->fetch(PDO::FETCH_ASSOC);
+	$smarty->assign('pot', $pot);
+	$smarty->assign('title','Pot: '.$pot["name"]);
+	
+	// assign participants
+	$sql = "SELECT u.id, u.nickname, u.name, u.firstname, u.email, DATE_FORMAT(u.birthdate, '%d.%m.%Y') AS birthday, 0 AS pay, 0 AS 'use' ";
+	$sql .= "FROM user u INNER JOIN user2pot u2p ON u.id = u2p.user_id ";
+	$sql .= "WHERE u2p.pot_id = ?";
+	$stmt = $dbh->prepare($sql);
+	$stmt->bindParam(1, $pot["id"]);
+	$stmt->execute();
+	$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$smarty->assign('users', $users);
+	
+	// assign products
+	$sql = "SELECT CONCAT('row_', product.id) AS rowId, product.description AS name, product.amount AS price, DATE_FORMAT(product.date, '%d.%m.%Y') AS date, u.name AS buyer, product.position ";
+	$sql .= "FROM potposition product INNER JOIN user u ON u.id = product.payer_id ";
+	$sql .= "WHERE product.pot_id = ? ORDER BY product.position";
+	$stmt = $dbh->prepare($sql);
+	$stmt->bindParam(1, $pot["id"]);
+	$stmt->execute();
+	$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	
+	$sql = "SELECT c.id, c.amount, CONCAT('row_', c.potposition_id) AS potposition_id, u.name FROM consumption c INNER JOIN user u ON u.id = c.user_id ";
+	$sql .= "WHERE potposition_id IN (SELECT id FROM potposition WHERE pot_id = ?)";
+	$stmt = $dbh->prepare($sql);
+	$stmt->bindParam(1, $pot["id"]);
+	$stmt->execute();
+	$consumptions = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	
+	for ($i = 0; $i < count($products); $i++) {
+		for ($j = 0; $j < count($consumptions); $j++) {
+			if ($products[$i]["rowId"] == $consumptions[$j]["potposition_id"]) {
+				$products[$i][$consumptions[$j]["name"]] = $consumptions[$j]["amount"];
+			}
+		}
+	}
+	$smarty->assign('products', $products);
+	
+	// assign edit item if isset
+	if (isset($_GET['item'])) {
+		$sql = "SELECT CONCAT('row_', product.id) AS rowId, product.description AS name, product.amount AS price, DATE_FORMAT(product.date, '%d.%m.%Y') AS date, u.name AS buyer ";
+		$sql .= "FROM potposition product INNER JOIN user u ON u.id = product.payer_id ";
+		$sql .= "WHERE product.pot_id = ? and product.id = ?";
+		$stmt = $dbh->prepare($sql);
+		$stmt->bindParam(1, $pot["id"]);
+		$stmt->bindParam(2, $_GET['item']);
+		$stmt->execute();
+		$product = $stmt->fetch(PDO::FETCH_ASSOC);
+		
+		$sql = "SELECT c.id, c.amount, CONCAT('row_', c.potposition_id) AS potposition_id, u.name FROM consumption c INNER JOIN user u ON u.id = c.user_id ";
+		$sql .= "WHERE potposition_id = ?";
+		$stmt = $dbh->prepare($sql);
+		$stmt->bindParam(1, $_GET['item']);
+		$stmt->execute();
+		$consumptions = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		
+		for ($i = 0; $i < count($consumptions); $i++) {
+			$product[$consumptions[$i]["name"]] = $consumptions[$i]["amount"];
+		}
+		$smarty->assign('editProduct', $product);
+	}
+	
 } else {
 	// TODO "leere" seite nur button pot erstellen
 	$smarty->assign('title','GFM - Gruppenfinanzverwaltung');
 	$smarty->assign('newPot', true);
 }
-
-
-
- // TODO generating random url
-/*$characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
-$random_string_length = 15;
-$string = '';
-for ($i = 0; $i < $random_string_length; $i++) {
-$string .= $characters[rand(0, strlen($characters) - 1)];
-}
-echo $string;*/
+$smarty->display('index.tpl');
 ?>

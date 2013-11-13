@@ -1,4 +1,9 @@
 @CHARSET "ISO-8859-1";
+body {
+  padding-top: 70px;
+  padding-bottom: 30px;
+}
+
 .currency {
 	text-align: right;
 }
@@ -16,10 +21,20 @@ th {
 	text-align: left;
 }
 
-tbody tr:HOVER {
+td.sorthandle {
 	cursor: pointer;
 }
 
 .tooltipable {
 	cursor: help;
+}
+
+.alert {
+	position: fixed;
+	top: 4em;
+	left: 50%;
+	width: 20em;
+	margin-left: -10em;
+	padding: 0.5em, 3em;
+	display: none;
 }

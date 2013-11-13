@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2013-11-13 00:25:52
+<?php /* Smarty version Smarty-3.1.15, created on 2013-11-13 00:11:38
          compiled from ".\templates\pot.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:9320527acc4c1dd2f9-99268696%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '9d0773d214d8f35e1ebfcedfd4845f7b0a299f2f' => 
     array (
       0 => '.\\templates\\pot.tpl',
-      1 => 1384298751,
+      1 => 1384297894,
       2 => 'file',
     ),
   ),
@@ -35,8 +35,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			<thead>
 				<tr id="expense_header_row">
 					<th>Datum</th>
-					<th></th>
-					<th></th>
+					<th>L</th>
+					<th>B</th>
 					<th>Beschreibung</th>
 					<th>Betrag</th>
 					<th>Zahler</th>
@@ -59,6 +59,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			</tfoot>
 		</table>
 	</div>
+	<button type="button" class="btn btn-default btn-lg">
+	  <span class="glyphicon glyphicon-star"></span> Star
+	</button>
 	<button onclick="calcSolution()" class="btn btn-default">L&ouml;sungsvorschlag berechnen</button>
 	<div id="solution_div" style="display: none;">
 		<h2>L&ouml;sungsvorschlag</h2>
