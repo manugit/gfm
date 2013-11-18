@@ -78,7 +78,7 @@
 				</div>
 				<div class="modal-body">
 					<form id="editParticipantForm" name="editParticipantForm" class="form-horizontal" role="form">
-						<input type="hidden" name="edit_participant_id" />
+						<input type="hidden" id="edit_participant_id" />
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Nickname</label>
 							<div class="col-sm-5">

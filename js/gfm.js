@@ -51,6 +51,64 @@ $(document).ready(function() {
 	$("#add_item_buyer").prop("selectedIndex", -1);
 });
 
+$(window).bind('popstate', function(event) {
+    // if the event has our history data on it, load the page fragment with AJAX
+    if (null != event.originalEvent && null != event.originalEvent.state && event.originalEvent.state["page"]) {
+    	if ("pot_page" == event.originalEvent.state["page"]) {
+    		reloadPotPage();
+    	} else if ("participant_page" == event.originalEvent.state["page"]) {
+    		reloadParticipantPage();
+    	} else if ("addItem_page" == event.originalEvent.state["page"]) {
+    		reloadAddItemPage();
+    	} else if ("editItem_page" == event.originalEvent.state["page"]) {
+    		reloadEditItemPage("row_" + event.originalEvent.state["item"]);
+    	}
+    }
+});
+
+function reloadEditItemPage(rowId) {
+	clearAllNavLi();
+	fillEditItemForm(products[getProductIndexFromRowId(rowId)]);
+	reloadPage("editItem_page");
+}
+
+function reloadParticipantPage() {
+	clearAllNavLi();
+	$('.navbar-collapse').collapse('hide');
+	$("#nav_participant_li").addClass("active");
+	clearForms();
+	reloadPage('participant_page')
+}
+
+function reloadAddItemPage() {
+	clearAllNavLi();
+	$('.navbar-collapse').collapse('hide');
+	$("#nav_addItem_li").addClass("active");
+	clearForms();
+	reloadPage('addItem_page')
+}
+
+function reloadPotPage() {
+	clearAllNavLi();
+	$('.navbar-collapse').collapse('hide');
+	$("#nav_pot_li").addClass("active");
+	clearForms();
+	reloadPage("pot_page");
+}
+
+function reloadPage(displayedPage) {
+	if (typeof displayedPage === "undefined") {
+		displayedPage = "pot_page";
+	}
+	
+	$("#pot_page").hide();
+	$("#addItem_page").hide();
+	$("#editItem_page").hide();
+	$("#participant_page").hide();
+	
+	$("#" + displayedPage).show();
+}
+
 function displayPage(displayedPage, itemId) {
 	if (typeof displayedPage === "undefined") {
 		displayedPage = "pot_page";
@@ -62,14 +120,16 @@ function displayPage(displayedPage, itemId) {
 	$("#participant_page").hide();
 	
 	$("#" + displayedPage).show();
+	var sessionObj = {page: displayedPage};
 	if ("pot_page" == displayedPage) {
-		window.history.pushState("object or string", displayedPage, "/gfm/" + pot["url"] + "/overview");
+		window.history.pushState(sessionObj, displayedPage, "/gfm/" + pot["url"] + "/overview");
 	} else if ("addItem_page" == displayedPage) {
-		window.history.pushState("object or string", displayedPage, "/gfm/" + pot["url"] + "/item/add");
+		window.history.pushState(sessionObj, displayedPage, "/gfm/" + pot["url"] + "/item/add");
 	} else if ("editItem_page" == displayedPage) {
-		window.history.pushState("object or string", displayedPage, "/gfm/" + pot["url"] + "/item/edit/" + itemId);
+		sessionObj["item"] = itemId;
+		window.history.pushState(sessionObj, displayedPage, "/gfm/" + pot["url"] + "/item/edit/" + itemId);
 	} else if ("participant_page" == displayedPage) {
-		window.history.pushState("object or string", displayedPage, "/gfm/" + pot["url"] + "/participant");
+		window.history.pushState(sessionObj, displayedPage, "/gfm/" + pot["url"] + "/participant");
 	}
 }
 
@@ -575,7 +635,7 @@ function checkNewParticipant() {
 
 function checkEditParticipant() {
 	if (checkParticipant("edit")) {
-		editParticipant($("#edit_participant_id").val(), $("#edit_participant_nickname").val(), $("#edit_participant_name").val(), $("#edit_participant_firstname").val(), $("#edit_participant_email").val(), $("#edit_participant_birthday_picker").val());
+		editParticipant($("#edit_participant_id").val(), $("#edit_participant_nickname").html(), $("#edit_participant_name").val(), $("#edit_participant_firstname").val(), $("#edit_participant_email").val(), $("#edit_participant_birthday_picker").val());
 		closeEditparticipantDialog();
 	}
 }
@@ -618,7 +678,7 @@ function checkParticipant(scope) {
 		valid = false;
 		$("#" + scope + "_participant_birthday_div").addClass("has-error");
 		$("#" + scope + "_participant_birthday_error").html("Kein valides Datum (Format: DD.MM.YYYY)");
-	} else if (!isDateOneBeforDateTwo(convertStringToDate($("#birthday_picker").val()), new Date())) {
+	} else if (!isDateOneBeforDateTwo(convertStringToDate($("#" + scope + "_participant_birthday_picker").val()), new Date())) {
 		valid = false;
 		$("#" + scope + "_participant_birthday_div").addClass("has-error");
 		$("#" + scope + "_participant_birthday_error").html("Das Datum muss vor heute sein.");

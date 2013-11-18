@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2013-11-13 00:25:31
+<?php /* Smarty version Smarty-3.1.15, created on 2013-11-18 20:19:08
          compiled from ".\templates\participant.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:5414527acc4c51dfe8-13036988%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '91e1c2d9f3bb48ccec29b886fcb785c67292db9b' => 
     array (
       0 => '.\\templates\\participant.tpl',
-      1 => 1384298729,
+      1 => 1384802344,
       2 => 'file',
     ),
   ),
@@ -136,7 +136,7 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['user']['last']       = ($_sm
 				</div>
 				<div class="modal-body">
 					<form id="editParticipantForm" name="editParticipantForm" class="form-horizontal" role="form">
-						<input type="hidden" name="edit_participant_id" />
+						<input type="hidden" id="edit_participant_id" />
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Nickname</label>
 							<div class="col-sm-5">
