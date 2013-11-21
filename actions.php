@@ -1,4 +1,5 @@
 <?php
+//Testcomment
 require 'dbConnection.php';
 
 if ("addPot" == ($_POST["action"])) {
