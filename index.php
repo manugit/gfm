@@ -30,7 +30,7 @@ if (isset($_GET['pot']) && isset($_GET['page'])) {
 	$smarty->assign('users', $users);
 	
 	// assign products
-	$sql = "SELECT CONCAT('row_', product.id) AS rowId, product.description AS name, product.amount AS price, DATE_FORMAT(product.date, '%d.%m.%Y') AS date, u.name AS buyer, product.position ";
+	$sql = "SELECT CONCAT('row_', product.id) AS rowId, product.description AS name, product.amount AS price, DATE_FORMAT(product.date, '%d.%m.%Y') AS date, u.nickname AS buyer, product.position ";
 	$sql .= "FROM potposition product INNER JOIN user u ON u.id = product.payer_id ";
 	$sql .= "WHERE product.pot_id = ? ORDER BY product.position";
 	$stmt = $dbh->prepare($sql);
@@ -56,7 +56,7 @@ if (isset($_GET['pot']) && isset($_GET['page'])) {
 	
 	// assign edit item if isset
 	if (isset($_GET['item'])) {
-		$sql = "SELECT CONCAT('row_', product.id) AS rowId, product.description AS name, product.amount AS price, DATE_FORMAT(product.date, '%d.%m.%Y') AS date, u.name AS buyer ";
+		$sql = "SELECT CONCAT('row_', product.id) AS rowId, product.description AS name, product.amount AS price, DATE_FORMAT(product.date, '%d.%m.%Y') AS date, u.nickname AS buyer ";
 		$sql .= "FROM potposition product INNER JOIN user u ON u.id = product.payer_id ";
 		$sql .= "WHERE product.pot_id = ? and product.id = ?";
 		$stmt = $dbh->prepare($sql);
