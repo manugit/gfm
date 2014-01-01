@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2013-11-08 10:45:39
+<?php /* Smarty version Smarty-3.1.15, created on 2014-01-01 17:57:07
          compiled from ".\templates\item.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:24705527acc4c2668b9-93302291%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '21bb44d21928d4b8fd97cee24fa67397faac0383' => 
     array (
       0 => '.\\templates\\item.tpl',
-      1 => 1383903003,
+      1 => 1388595266,
       2 => 'file',
     ),
   ),
@@ -118,7 +118,8 @@ _item_buyer_error"></span>
 			<label class="control-label col-sm-2">Konsumation</label>
 			<div class="col-sm-10"></div>
 		</div>
-		<div id="edit_item_participants_consumptions">
+		<div id="<?php echo $_smarty_tpl->tpl_vars['scopeLowerCase']->value;?>
+_item_participants_consumptions">
 		<?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['user'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['user']);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['user']['name'] = 'user';
 $_smarty_tpl->tpl_vars['smarty']->value['section']['user']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['users']->value) ? count($_loop) : max(0, (int) $_loop); unset($_loop);

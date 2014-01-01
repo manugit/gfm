@@ -37,7 +37,7 @@
 			<label class="control-label col-sm-2">Konsumation</label>
 			<div class="col-sm-10"></div>
 		</div>
-		<div id="edit_item_participants_consumptions">
+		<div id="{$scopeLowerCase}_item_participants_consumptions">
 		{section name=user loop=$users}
 			<div class="form-group" id="{$scopeLowerCase}_item_{$users[user].nickname}_percentage_div">
 				<label class="control-label col-sm-2" for="{$scopeLowerCase}_item_{$users[user].nickname}_percentage">{$users[user].nickname}</label>

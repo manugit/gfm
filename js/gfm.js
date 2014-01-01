@@ -178,7 +178,7 @@ function clearAllNavLi() {
 }
 
 function clearForm(formId) {
-	$("#" + formId).find("input[type=text], textarea").val("");
+	$("#" + formId).find("input[type=text], input[type=email], textarea").val("");
 }
 
 function fillEditItemForm(product) {
