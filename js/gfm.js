@@ -505,6 +505,7 @@ function editItem(id, name, amount, date, buyer, consumptions) {
 			}
 			updateSumValues();
 			displayPotPage();
+			$('[rel="tooltip"]').tooltip();
 
 			$("#successText").html(data.message);
 			$("#successDiv").show().delay(5000).fadeOut();

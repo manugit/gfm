@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-01-01 17:57:07
+<?php /* Smarty version Smarty-3.1.15, created on 2014-01-06 20:38:58
          compiled from ".\templates\item.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:24705527acc4c2668b9-93302291%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '21bb44d21928d4b8fd97cee24fa67397faac0383' => 
     array (
       0 => '.\\templates\\item.tpl',
-      1 => 1388595266,
+      1 => 1389037136,
       2 => 'file',
     ),
   ),
@@ -33,9 +33,10 @@ Item_page" <?php if ($_smarty_tpl->tpl_vars['displayedPage']->value!=((string)$_
 	<form id="<?php echo $_smarty_tpl->tpl_vars['scopeLowerCase']->value;?>
 ItemForm" onsubmit="check<?php echo $_smarty_tpl->tpl_vars['scopeUpperCase']->value;?>
 Item(); return false;" class="form-horizontal" role="form">
-		<?php if (isset($_smarty_tpl->tpl_vars['editProduct']->value)) {?><input type="hidden" id="<?php echo $_smarty_tpl->tpl_vars['scopeLowerCase']->value;?>
-_item_id" value="<?php echo $_smarty_tpl->tpl_vars['editProduct']->value['rowId'];?>
-" /><?php }?>
+		<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['scopeLowerCase']->value;?>
+<?php $_tmp1=ob_get_clean();?><?php if ($_tmp1=="edit") {?><input type="hidden" id="<?php echo $_smarty_tpl->tpl_vars['scopeLowerCase']->value;?>
+_item_id" value="<?php if (isset($_smarty_tpl->tpl_vars['editProduct']->value)) {?><?php echo $_smarty_tpl->tpl_vars['editProduct']->value['rowId'];?>
+<?php }?>" /><?php }?>
 		<div class="form-group" id="<?php echo $_smarty_tpl->tpl_vars['scopeLowerCase']->value;?>
 _item_name_div">
 			<label class="control-label col-sm-2" for="<?php echo $_smarty_tpl->tpl_vars['scopeLowerCase']->value;?>

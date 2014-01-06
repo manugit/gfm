@@ -1,6 +1,6 @@
 <div id="{$scopeLowerCase}Item_page" {if $displayedPage != "{$scopeLowerCase}Item_page"}style="display: none;"{/if}>
 	<form id="{$scopeLowerCase}ItemForm" onsubmit="check{$scopeUpperCase}Item(); return false;" class="form-horizontal" role="form">
-		{if isset($editProduct)}<input type="hidden" id="{$scopeLowerCase}_item_id" value="{$editProduct.rowId}" />{/if}
+		{if {$scopeLowerCase} == "edit"}<input type="hidden" id="{$scopeLowerCase}_item_id" value="{if isset($editProduct)}{$editProduct.rowId}{/if}" />{/if}
 		<div class="form-group" id="{$scopeLowerCase}_item_name_div">
 			<label class="control-label col-sm-2" for="{$scopeLowerCase}_item_name">Name</label>
 			<div class="col-sm-5">

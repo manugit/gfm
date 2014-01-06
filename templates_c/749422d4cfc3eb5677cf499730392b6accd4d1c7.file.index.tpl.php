@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2013-11-13 00:50:26
+<?php /* Smarty version Smarty-3.1.15, created on 2014-01-06 20:21:25
          compiled from ".\templates\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:31627527acc4bf0d899-92378037%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '749422d4cfc3eb5677cf499730392b6accd4d1c7' => 
     array (
       0 => '.\\templates\\index.tpl',
-      1 => 1384300139,
+      1 => 1389035947,
       2 => 'file',
     ),
   ),
@@ -87,7 +87,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<?php echo $_smarty_tpl->getSubTemplate ('navbar.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
     <div class="container theme-showcase">
-    	<div class="page-header"><h1><?php echo $_smarty_tpl->tpl_vars['pot']->value['name'];?>
+    	<div class="page-header">
+		<?php if (empty($_smarty_tpl->tpl_vars['pot']->value)) {?>
+	<h1>Kein Pot unter der angegebenen ID gefunden</h1>
+	<?php } else { ?>
+		<h1><?php echo $_smarty_tpl->tpl_vars['pot']->value['name'];?>
  <small><?php echo $_smarty_tpl->tpl_vars['pot']->value['description'];?>
 </small></h1></div>
 	    <?php echo $_smarty_tpl->getSubTemplate ('pot.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
@@ -98,6 +102,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 	    <?php echo $_smarty_tpl->getSubTemplate ('participant.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
+	<?php }?>
 	<?php }?>
 	</div> <!-- /container -->
 </body>
