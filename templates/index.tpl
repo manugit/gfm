@@ -43,11 +43,16 @@
 	{else}
 	{include file='navbar.tpl'}
     <div class="container theme-showcase">
-    	<div class="page-header"><h1>{$pot.name} <small>{$pot.description}</small></h1></div>
+    	<div class="page-header">
+		{if empty($pot)}
+	<h1>Kein Pot unter der angegebenen ID gefunden</h1>
+	{else}
+		<h1>{$pot.name} <small>{$pot.description}</small></h1></div>
 	    {include file='pot.tpl'}
 	    {include file='item.tpl' scopeUpperCase='New' scopeLowerCase='add' buttonText='Ausgabe hinzuf&uuml;gen'}
 	    {include file='item.tpl' scopeUpperCase='Edit' scopeLowerCase='edit' buttonText='Ausgabe speichern'}
 	    {include file='participant.tpl'}
+	{/if}
 	{/if}
 	</div> <!-- /container -->
 </body>
